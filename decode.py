@@ -7,6 +7,13 @@
 # line = '072114071922011722012014010610180506' # Queen of skulls
 #--- line = '2008050609181920091920080512011920' # queen of dials (goon)
 #--- line = '2122060518061805091814040822180717181918010618' # 5 of disks 100
+# line = '252516251814050803' # 7 of keys
+
+
+# line = '01020714252510210210140117180514051825020607' # Lost's black badge (ace of skull)
+#--- line = '0914200805180501121518040518200805' # Ace of dials
+# line = '' # ace of keys
+
 
 dials = [
 (2, '1212200805060505040201031125152114', '110'),
@@ -52,26 +59,13 @@ skulls = [
 (10, '1508070602261807222618062518141706140607051412', '001')
 ]
 
-'hack'
 suits = [('dials', sorted(dials)), ('skulls', sorted(skulls)), ('disks', sorted(disks)), ('keys', sorted(keys))]
-
-# line = '252516251814050803' # 7 of keys
-
-
-# line = '01020714252510210210140117180514051825020607' # Lost's black badge (ace of skull)
-#--- line = '0914200805180501121518040518200805' # Ace of dials
-# line = '' # ace of keys
-
-notes = ''
-
 
 def rotn(s, n):
   return [1 + (i + n - 1) % 26 for i in s]
 
 def intToChar(i):
   return chr(i + ord('A') - 1)
-
-# freqs = dict([(intToChar(i), 0) for i in xrange(1, 27)])
 
 for (name, suit) in suits:
   print('%s' % name)
@@ -87,16 +81,9 @@ for (name, suit) in suits:
       rot = 0
     ints = [int(str(c)) for c in decoded]
     chars = [intToChar(i) for i in rotn(ints, rot)]
-    # if rot == 0:
-    #   for i in chars:
-    #     print i;
-    #     freqs[i] += 1
 
     asString = reduce(lambda l, r: l + r, chars, '')
     cards[binary] = (asString, card)
 
   for (binary, (asString, card)) in sorted(cards.items()):
     print('%4s %s %s' % (str(card), binary, asString))
-
-# for (c, freq) in sorted(freqs.items()):
-#   print('%s %d' % (c, freq))
