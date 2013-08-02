@@ -18,7 +18,7 @@
 dials = [
 (2, '1212200805060505040201031125152114', '110'),
 (10, '0505040914200805180501121518040518', '111'),
-('q', '2008050609181920091920080512011920', '000'), # maybe 111
+('q', '2008050609181920091920080512011920', '000'), # 000 or 111?
 ('a', '0914200805180501121518040518200805', '001'),
 ('j', '0609181920091920080512011920020505', '010'),
 ('k', '2605181501140415140523091212020501', '101'),
@@ -61,11 +61,32 @@ skulls = [
 
 suits = [('dials: register', sorted(dials)), ('skulls: e', sorted(skulls)), ('disks: pi', sorted(disks)), ('keys: gray code', sorted(keys))]
 
+regOrder = [7, 3, 1, 4, 2, 5, 6, 7]
+
 def rotn(s, n):
   return [1 + (i + n - 1) % 26 for i in s]
 
 def intToChar(i):
   return chr(i + ord('A') - 1)
+
+# stickers = [[
+# '01100100',
+# '01100101',
+# '01100110',
+# '01100011',
+# '01101111',
+# '01101110'],
+
+# [
+# '01001110',
+# '01001111',
+# '01000011',
+# '00100011',
+# '01000110',
+# '01000101',
+# '01000111'
+# ]]
+
 
 for (name, suit) in suits:
   print('%s' % name)
@@ -77,7 +98,7 @@ for (name, suit) in suits:
 
     decoded = [line[i:i+2] for i in range(0, len(line), 2)]
     rot = 13
-    if name == 'dials':
+    if name == 'dials: register':
       rot = 0
     ints = [int(str(c)) for c in decoded]
     chars = [intToChar(i) for i in rotn(ints, rot)]
@@ -87,3 +108,10 @@ for (name, suit) in suits:
 
   for (binary, (asString, card)) in sorted(cards.items()):
     print('%4s %s %s' % (str(card), binary, asString))
+
+
+# for s in stickers:
+#   data = [intToChar(int(st, 2)) for st in s]
+#   print(data)
+
+
