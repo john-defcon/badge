@@ -59,7 +59,7 @@ skulls = [
 (10, '1508070602261807222618062518141706140607051412', '001')
 ]
 
-suits = [('dials', sorted(dials)), ('skulls', sorted(skulls)), ('disks', sorted(disks)), ('keys', sorted(keys))]
+suits = [('dials: register', sorted(dials)), ('skulls: e', sorted(skulls)), ('disks: pi', sorted(disks)), ('keys: gray code', sorted(keys))]
 
 def rotn(s, n):
   return [1 + (i + n - 1) % 26 for i in s]
